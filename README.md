@@ -8,3 +8,4 @@
 - [Module 4 - POO en C# partie 1](https://github.com/Skewnart/Supinfo-2025-3ASP/tree/main/Module%204)
 - [Module 5 - POO en C# partie 2](https://github.com/Skewnart/Supinfo-2025-3ASP/tree/main/Module%205)
 - [Module 6 - Principes avancées](https://github.com/Skewnart/Supinfo-2025-3ASP/tree/main/Module%206)
+- [Module 7 - Les données](https://github.com/Skewnart/Supinfo-2025-3ASP/tree/main/Module%207)

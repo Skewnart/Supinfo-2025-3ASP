@@ -6,6 +6,9 @@ using SchoolAPI.Filters;
 
 namespace SchoolAPI.Controllers
 {
+    /// <summary>
+    /// Controller pour gérer les étudiants.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class StudentsController : ControllerBase
@@ -17,12 +20,21 @@ namespace SchoolAPI.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Récupérer la liste des étudiants.
+        /// </summary>
+        /// <returns>Les étudiants</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Student>>> GetStudents()
         {
             return await _context.Students.ToListAsync();
         }
 
+        /// <summary>
+        /// Récupérer un étudiant avec son ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Student>> GetStudent(int id)
         {
@@ -36,6 +48,11 @@ namespace SchoolAPI.Controllers
             return student;
         }
 
+        /// <summary>
+        /// Ajouter un étudiant.
+        /// </summary>
+        /// <param name="student"></param>
+        /// <returns>Le nouvel étudiant</returns>
         [HttpPost]
         [ValidateStudentFilter]
         public async Task<ActionResult<Student>> PostStudent(Student student)
@@ -46,6 +63,12 @@ namespace SchoolAPI.Controllers
             return CreatedAtAction(nameof(GetStudent), new { id = student.ID }, student);
         }
 
+        /// <summary>
+        /// Mettre à jour un étudiant
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="student"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutStudent(int id, Student student)
         {
@@ -75,6 +98,11 @@ namespace SchoolAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Supprimer un étudiant
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteStudent(int id)
         {

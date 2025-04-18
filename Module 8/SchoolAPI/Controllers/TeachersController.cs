@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SchoolAPI.Controllers
 {
+    /// <summary>
+    /// Controller pour gérer les enseignants.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class TeachersController : ControllerBase
@@ -16,12 +19,21 @@ namespace SchoolAPI.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Récupérer la liste des enseignants.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Teacher>>> GetTeachers()
         {
             return await _context.Teachers.ToListAsync();
         }
 
+        /// <summary>
+        /// Récupérer un enseignant avec son ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Teacher>> GetTeacher(int id)
         {
@@ -35,6 +47,11 @@ namespace SchoolAPI.Controllers
             return teacher;
         }
 
+        /// <summary>
+        /// Ajouter un enseignant.
+        /// </summary>
+        /// <param name="teacher"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<Teacher>> PostTeacher(Teacher teacher)
         {
@@ -44,6 +61,12 @@ namespace SchoolAPI.Controllers
             return CreatedAtAction(nameof(GetTeacher), new { id = teacher.ID }, teacher);
         }
 
+        /// <summary>
+        /// Modifier un enseignant.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="teacher"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTeacher(int id, Teacher teacher)
         {
@@ -73,6 +96,11 @@ namespace SchoolAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Supprimer un enseignant.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTeacher(int id)
         {

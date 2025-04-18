@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SchoolAPI.Controllers
 {
+    /// <summary>
+    /// Controller pour gérer les salles de classe.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ClassroomsController : ControllerBase
@@ -16,12 +19,21 @@ namespace SchoolAPI.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Récupérer la liste des salles de classe.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Classroom>>> GetClassrooms()
         {
             return await _context.Classrooms.ToListAsync();
         }
 
+        /// <summary>
+        /// Récupérer une salle de classe avec son ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Classroom>> GetClassroom(int id)
         {
@@ -35,6 +47,11 @@ namespace SchoolAPI.Controllers
             return classroom;
         }
 
+        /// <summary>
+        /// Ajouter une salle de classe.
+        /// </summary>
+        /// <param name="classroom"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<Classroom>> PostClassroom(Classroom classroom)
         {
@@ -44,6 +61,12 @@ namespace SchoolAPI.Controllers
             return CreatedAtAction(nameof(GetClassroom), new { id = classroom.ID }, classroom);
         }
 
+        /// <summary>
+        /// Modifier une salle de classe.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="classroom"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutClassroom(int id, Classroom classroom)
         {
@@ -73,6 +96,11 @@ namespace SchoolAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Supprimer une salle de classe.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClassroom(int id)
         {
